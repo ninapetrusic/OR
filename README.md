@@ -5,6 +5,7 @@
 - Verzija: 1.0
 - Jezik: hrvatski
 - Tablica kolegiji: 
+
 | Naziv          | Opis                  | Tip            | Primarni ključ | Obvezan        |
 |----------------|-----------------------|----------------|----------------|----------------|
 |idkolegij       |Identifikacijski broj  |Integer         |Da              |Da              |
@@ -19,6 +20,7 @@
 |godina          |Godina razine studija  |Integer         |Ne              |Da              |
 
 - Tablica nositelji:
+
 | Naziv          | Opis                  | Tip            | Primarni ključ | Obvezan        |
 |----------------|-----------------------|----------------|----------------|----------------|
 |idnositelj      |Identifikacijski broj  |Integer         |Da              |Da              |
@@ -27,18 +29,21 @@
 |titula          |Akademski stupanj      |Character(20)   |Ne              |Ne              |
 
 - Tablica profili:
+
 | Naziv          | Opis                  | Tip            | Primarni ključ | Obvezan        |
 |----------------|-----------------------|----------------|----------------|----------------|
 |idprofil        |Identifikacijski broj  |Integer         |Da              |Da              |
 |naziv           |Naziv profila          |Character(50)   |Ne              |Ne              |
 
 - Tablica kolegijnositelj:
+
 | Naziv          | Opis                  | Tip            | Primarni ključ | Obvezan        |
 |----------------|-----------------------|----------------|----------------|----------------|
 |idkolegij       |Identifikacijski broj  |Integer         |Da              |Da              |
 |idnositelj      |Identifikacijski broj  |Integer         |Da              |Da              |
 
 - Tablica kolegijprofil:
+
 | Naziv          | Opis                  | Tip            | Primarni ključ | Obvezan        |
 |----------------|-----------------------|----------------|----------------|----------------|
 |idkolegij       |Identifikacijski broj  |Integer         |Da              |Da              |
