@@ -1,0 +1,11 @@
+idkolegij,naziv,semestar,ects,predavanja,laboratorijske,auditorne,studij,smjer,godina
+183357,Uvod u programiranje                              ,zimski,7,60,18,0,preddiplomski                 ,,1
+183371,Objektno orijentirano programiranje               ,ljetni,8,60,18,15,preddiplomski                 ,,1
+183384,Električni krugovi                                ,zimski,5,60,12,0,preddiplomski                 ,Elektrotehnika i informacijska tehnologija        ,2
+183381,Algoritmi i strukture podataka                    ,zimski,6,60,6,0,preddiplomski                 ,Računarstvo                                       ,2
+183421,Elektromagnetska polja                            ,zimski,5,60,15,0,preddiplomski                 ,Elektrotehnika i informacijska tehnologija        ,3
+229862,Uvod u umjetnu inteligenciju                      ,ljetni,4,45,15,0,preddiplomski                 ,Računarstvo                                       ,3
+222496,Napredni algoritmi i strukture podataka           ,zimski,5,45,15,6,diplomski                     ,Računarstvo                                       ,1
+222596,Osnove robotike                                   ,zimski,5,45,13,15,diplomski                     ,Informacijska i komunikacijska tehnologija        ,1
+222533,Digitalni integrirani sklopovi                    ,ljetni,5,45,12,6,diplomski                     ,Elektrotehnika i informacijska tehnologija        ,1
+222792,Svemirske tehnologije                             ,ljetni,5,45,6,0,diplomski                     ,Informacijska i komunikacijska tehnologija        ,1

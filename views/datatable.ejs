@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="author" content="Nina Petrušić">
+    <meta name="keywords" content="kolegiji, FER">
+    <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel="stylesheet" href='/style/main.css'>
+  </head>
+  <body>
+    <section class="section">
+    <h1>Datatable</h1>
+    <hr>
+    <a href="./">Natrag</a>
+
+    <form action="/datatable" method="post">
+      <legend>Pretraživanje:</legend>
+
+      <div>
+        <label for="text">Polje za pretragu</label><br>
+        <input type="text" name="tekst" id="tekst" placeholder="Unesite vrijednost">
+
+        <% if (err !== undefined ) { %>
+          <p class="alert alert-danger"><%= err %></p>
+        <% } %>
+
+      </div>
+      <div>
+        <select name="filter" id="filter">
+          <option value="" disabled selected>Odaberite polje za pretragu </option>
+          <option value="wildcard">Sva polja (wildcard)</option>
+          <option value="kolegij_naziv">Naziv kolegija</option>
+          <option value="prezime">Prezime nositelja</option>
+          <option value="studij">Studij</option>
+          <option value="semestar">Semestar</option>
+          <option value="smjer">Smjer</option>
+        </select>
+      </div>
+      <input type="submit" value="Pretraži" class="button"/>
+      <button type="button" class="button" name ="reset" value="obrisifilter" onclick="window.location='/datatable';">Obriši filter</button>
+    </form>
+      <% if (download) { %>
+        <br><p>Preuzimanje filtriranog skupa podataka u JSON ili CSV formatu:<br>
+          <div>
+            CSV:<a href="/download/Kolegiji_na_FER-u_filt.csv" download><button class="btn"><i class="fa fa-download"></i> Download</button></a><br>
+          </div>
+          <div> 
+            JSON:<a href="/download/Kolegiji_na_FER-u_filt.json" download><button class="btn"><i class="fa fa-download"></i> Download</button></a>
+          </div>
+        </p>
+      <% } %>
+
+    
+    </section>
+    <br>
+    <section>
+      <table>
+        <tr>
+          <th>ID kolegija</th>
+          <th>Naziv kolegija</th>
+          <th>Semestar</th>
+          <th>ECTS</th>
+          <th>Predavanja</th>
+          <th>Laboratorijske</th>
+          <th>Auditorne</th>
+          <th>Studij</th>
+          <th>Smjer</th>
+          <th>Godina</th>
+          <th>ID profila</th>
+          <th>Naziv profila</th>
+          <th>ID nositelja</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Titula</th>
+        </tr>
+        <% for (let row of rows) { %>
+          <tr>
+            <td><%= row.idkolegij %></td>
+            <td><%= row.kolegij_naziv %></td>
+            <td><%= row.semestar %></td>
+            <td><%= row.ects %></td>
+            <td><%= row.predavanja %></td>
+            <td><%= row.laboratorijske %></td>
+            <td><% if(!row.auditorne) { %> 0 <% }else { %> <%=row.auditorne%> <% } %></td>
+            <td><%= row.studij %></td>
+            <td><% if(!row.smjer) { %> / <% }else { %> <%=row.smjer%> <% } %></td>
+            <td><%= row.godina %></td>
+            <td><% if(!row.idprofil) { %> / <% }else { %> <%=row.idprofil%> <% } %></td>
+            <td><% if(!row.profil_naziv) { %> / <% }else { %> <%=row.profil_naziv%> <% } %></td>
+            <td><%= row.idnositelj %></td>
+            <td><%= row.ime %></td>
+            <td><%= row.prezime %></td>
+            <td><%= row.titula %></td>
+          </tr>
+          
+        <% } %>
+      </table>
+    </section>
+  </body>
+  
+</html>

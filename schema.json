@@ -1,0 +1,80 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "Kolegiji na FER-u",
+    "description": "Kolegij na FER-u",
+    "type": "array",
+    "properties": {
+        "idkolegij": {
+            "description": "Identifikacijski broj",
+            "type": "integer"
+        },
+        "kolegij_naziv": {
+            "description": "Naziv kolegija",
+            "type": "string"
+        },
+        "semestar": {
+            "description": "Zimski/ljetni",
+            "type": "string"
+        },
+        "ects": {
+            "description": "ECTS bodovi",
+            "type": "integer"
+        },
+        "predavanja": {
+            "description": "Broj predavanja",
+            "type": "integer"
+        },
+        "laboratorijske": {
+            "description": "Broj lab. vježbi",
+            "type": "integer"
+        },
+        "auditorne": {
+            "description": "Broj auditornih vježbi",
+            "type": "integer"
+        },
+        "studij": {
+            "description": "Razina studija",
+            "type": "string"
+        },
+        "smjer": {
+            "description": "Smjer na toj razini",
+            "type": "string"
+        },
+        "godina": {
+            "description": "Godina razine studija",
+            "type": "integer"
+        },
+        "idprofil": {
+            "description": "Identifikacijski broj",
+            "type": "integer"
+        },
+        "profil_naziv": {
+            "description": "Naziv profila",
+            "type": "string"
+        },
+        "idnositelj": {
+            "description": "Identifikacijski broj",
+            "type": "integer"
+        },
+        "ime": {
+            "description": "Ime nositelja",
+            "type": "string"
+        },
+        "prezime": {
+            "description": "Prezime nositelja",
+            "type": "string"
+        },
+        "titula": {
+            "description": "Akademski stupanj",
+            "type": "string"
+        }
+    },
+    "required": [
+        "idkolegij",
+        "ects",
+        "godina",
+        "idprofil",
+        "idnositelj"
+    ]
+}
