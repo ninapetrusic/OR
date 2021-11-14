@@ -11,9 +11,8 @@
   </head>
   <body>
     <section class="section">
-    <h1>Datatable</h1>
+    <h1><a href="./"><i class="fa fa-arrow-left"></i></a> Datatable</h1>
     <hr>
-    <a href="./">Natrag</a>
 
     <form action="/datatable" method="post">
       <legend>Pretraživanje:</legend>
@@ -38,18 +37,19 @@
           <option value="smjer">Smjer</option>
         </select>
       </div>
+      <br>
       <input type="submit" value="Pretraži" class="button"/>
       <button type="button" class="button" name ="reset" value="obrisifilter" onclick="window.location='/datatable';">Obriši filter</button>
     </form>
       <% if (download) { %>
-        <br><p>Preuzimanje filtriranog skupa podataka u JSON ili CSV formatu:<br>
-          <div>
-            CSV:<a href="/download/Kolegiji_na_FER-u_filt.csv" download><button class="btn"><i class="fa fa-download"></i> Download</button></a><br>
-          </div>
-          <div> 
-            JSON:<a href="/download/Kolegiji_na_FER-u_filt.json" download><button class="btn"><i class="fa fa-download"></i> Download</button></a>
-          </div>
-        </p>
+        <br><div>Preuzimanje filtriranog skupa podataka u JSON ili CSV formatu:<br>
+          <p>
+            CSV:&ensp; <a href="/download/Kolegiji_na_FER-u_filt.csv" download><button class="button index"><i class="fa fa-download"></i> Download</button></a><br>
+          </p>
+          <p> 
+            JSON: <a href="/download/Kolegiji_na_FER-u_filt.json" download><button class=" button index"><i class="fa fa-download"></i> Download</button></a>
+          </p>
+        </div>
       <% } %>
 
     
@@ -57,7 +57,7 @@
     <br>
     <section>
       <table>
-        <tr>
+        <tr id="th">
           <th>ID kolegija</th>
           <th>Naziv kolegija</th>
           <th>Semestar</th>

@@ -1,6 +1,11 @@
 body {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('/images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family:sans-serif;
     padding: 50px;
+    color:white;
 }
 div {
   padding: 5px 0px;
@@ -27,22 +32,29 @@ div {
 }
 
 table {
-  border: 2px solid rgb(180, 180, 184);
+  border: 2px solid rgb(165,165,165);
   border-collapse: collapse;
   font-size: 14px;
   width: 100%;
+  color: black;
+  background:rgba(180,180,180,0.8);
 }
 th, td {
-  border: 1px solid rgb(180, 180, 180);
+  border: 1px solid rgb(130, 130, 130);
   text-align: center;
   padding: 10px 5px;
 }
 th {
-  background: rgb(210, 210, 210);
-  border-bottom: 2px solid rgb(180, 180, 180);
+  background: rgb(165, 165, 165);
+  border-bottom: 2px solid rgb(130, 130, 130);
 }
-tr:hover {background-color: rgb(132, 219, 175);}
-
+tr:hover {
+  background-color:rgb(85, 85, 199);
+  color:white;
+}
+#th:hover {
+  color:black
+}
 /* Dropdown Button */
 .dropbtn {
   background-color: #3498DB;
@@ -89,6 +101,37 @@ tr:hover {background-color: rgb(132, 219, 175);}
 .show {display:block;}
 
 .button {
-  background:rgb(180, 180, 180);
+  background:rgba(285,285,285,0.2);
+  color:white;
   border-radius: 5px;
+  border: 2px black;
+  width: 100px;
+  height: 30px;
+}
+.index {
+  width: 180px;
+  height: 50px;
+  font-size: 20px;
+}
+
+#filter, #tekst {
+  border-radius: 5px;
+  width: 220px;
+  height: 35px;
+}
+
+legend {
+  font-size: xx-large;
+}
+label {
+  font-size: larger;
+}
+a {
+  color: gainsboro;
+}
+a:hover {
+  color: white;
+}
+#meta {
+  color:rgb(156, 156, 156);
 }
