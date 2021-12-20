@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
                 FROM (kolegiji NATURAL JOIN kolegijnositelj NATURAL JOIN nositelji) 
                     LEFT JOIN (kolegijprofil JOIN profili ON kolegijprofil.idprofil = profili.idprofil) 
                         ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
-                        
+
         res.render('datatable', {
             rows: rows,
             title: 'Datatable',
@@ -77,11 +77,19 @@ router.post('/add', function (req, res, next) {
                 }
             } catch (error) {
                 console.log(error);
-                err = "Nositelj već postoji!";
             }
         } catch (error) {
-            console.log(error);
-            err = "Kolegij već postoji!";
+            rows = (await db.query(
+                `SELECT kolegiji.idkolegij, kolegiji.naziv as kolegij_naziv, semestar, ects, predavanja, laboratorijske, auditorne, studij, smjer, godina, profili.idprofil, profili.naziv as profil_naziv, idnositelj, ime, prezime, titula
+                    FROM (kolegiji NATURAL JOIN kolegijnositelj NATURAL JOIN nositelji) 
+                        LEFT JOIN (kolegijprofil JOIN profili ON kolegijprofil.idprofil = profili.idprofil) 
+                            ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
+            res.status(400).render('datatable', {
+                rows: rows,
+                title: 'Datatable',
+                err: "Kolegij već postoji!",
+                download: false,
+            });
         }
         res.redirect("/datatable/" + req.body.idkolegij);
     })();
@@ -108,7 +116,7 @@ router.get('/:kolegijId', function (req, res, next) {
                     FROM (kolegiji NATURAL JOIN kolegijnositelj NATURAL JOIN nositelji) 
                         LEFT JOIN (kolegijprofil JOIN profili ON kolegijprofil.idprofil = profili.idprofil) 
                             ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
-            res.render('datatable', {
+            res.status(404).render('datatable', {
                 rows: rows,
                 title: 'Datatable',
                 err: "ID kolegija ne postoji!",
@@ -124,25 +132,47 @@ router.put('/:kolegijId/edit', function (req, res, next) {
         try {
         var upit = "UPDATE kolegiji SET semestar = $1, ects = $2, predavanja = $3, laboratorijske = $4, auditorne = $5 WHERE idkolegij = $6";
         await db.query(upit, [req.body.semestar, req.body.ects, req.body.predavanja, req.body.laboratorijske, req.body.auditorne, req.params.kolegijId]);
+        res.redirect("/datatable/" + req.params.kolegijId);
         } catch (error) {
             console.log(error);
+            rows = (await db.query(
+                `SELECT kolegiji.idkolegij, kolegiji.naziv as kolegij_naziv, semestar, ects, predavanja, laboratorijske, auditorne, studij, smjer, godina, profili.idprofil, profili.naziv as profil_naziv, idnositelj, ime, prezime, titula
+                    FROM (kolegiji NATURAL JOIN kolegijnositelj NATURAL JOIN nositelji) 
+                        LEFT JOIN (kolegijprofil JOIN profili ON kolegijprofil.idprofil = profili.idprofil) 
+                            ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
+            res.status(404).render('datatable', {
+                rows: rows,
+                title: 'Datatable',
+                err: "ID kolegija ne postoji!",
+                download: false,
+            });
         }
-        res.redirect("/datatable/" + req.params.kolegijId);
     })();
 });
 
 router.delete('/:kolegijId/delete', function (req, res, next) {
+    let code;
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     (async () => {
         try {
             await db.query("DELETE FROM kolegijprofil WHERE idkolegij = $1", [req.params.kolegijId]);
             await db.query("DELETE FROM kolegijnositelj WHERE idkolegij = $1", [req.params.kolegijId]);
             await db.query("DELETE FROM kolegiji WHERE idkolegij = $1", [req.params.kolegijId]);
-            let message = "Uspješno obrisan kolegij s id: " + req.params.kolegijId;
+            res.redirect("/datatable");
         } catch (error) {
             console.log(error);
+            rows = (await db.query(
+                `SELECT kolegiji.idkolegij, kolegiji.naziv as kolegij_naziv, semestar, ects, predavanja, laboratorijske, auditorne, studij, smjer, godina, profili.idprofil, profili.naziv as profil_naziv, idnositelj, ime, prezime, titula
+                    FROM (kolegiji NATURAL JOIN kolegijnositelj NATURAL JOIN nositelji) 
+                        LEFT JOIN (kolegijprofil JOIN profili ON kolegijprofil.idprofil = profili.idprofil) 
+                            ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
+            res.status(404).render('datatable', {
+                rows: rows,
+                title: 'Datatable',
+                err: "ID kolegija ne postoji!",
+                download: false,
+            })
         }
-        res.redirect("/datatable");
     })();
 });
 

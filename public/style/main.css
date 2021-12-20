@@ -141,3 +141,6 @@ a:hover {
   background:rgba(285,285,285,0.4);
   color: black;
 }
+pre {
+  color:white;
+}

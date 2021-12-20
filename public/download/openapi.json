@@ -1,0 +1,123 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kolegiji na FER-u",
+    "version": "1.0",
+    "contact": {
+      "name": "Nina Petrušić"
+    },
+    "license": {
+      "name": "Creative Commons Zero v1.0 Universal"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Pocetna stranica",
+        "description": "Moguce preuzimanje cijelog skupa podataka",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/datatable": {
+      "get": {
+        "summary": "Tablica sa svim podacima",
+        "description": "Filtriranje i preuzimanje, veze na pojedini resurs, dodavanje novog resursa",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Rezultat filtriranja",
+        "description": "Filtriranje podataka",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/datatable/add": {
+      "get": {
+        "summary": "Prikaz za dodavanje kolegija",
+        "description": "Dodavanje novog podatka u skup",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Slanje novog podatka",
+        "description": "Spremanje podatka u bazu",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/datatable/add/nositelji": {
+      "get": {
+        "summary": "Prikaz svih nositelja",
+        "description": "Kod dodavanja novog podatka poveznica na popis nositelja",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/datatable/:kolegijId": {
+      "get": {
+        "summary": "Prikaz pojedinog kolegija",
+        "description": "Dohvat podataka o kolegiju s određenim id, forma za uređivanje i gumb za brisanje",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/datatable/:kolegijId/edit": {
+      "put": {
+        "summary": "Uređivanje podatka",
+        "description": "Uređivanje određenih polja određenog podatka",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/datatable/:kolegijId/delete": {
+      "delete": {
+        "summary": "Brisanje podatka",
+        "description": "Brisanje određenog podatka",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  }
+}

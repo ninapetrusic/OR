@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <meta name="author" content="Nina Petrušić">
+    <meta name="keywords" content="kolegiji, FER">
+    <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='/style/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h1><a href="./"><i class="fa fa-arrow-left"></i></a>OpenAPI</h1>
+    <hr>
+    <p id="meta">
+        Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
+        dopuštenja (uključujući i komercijalne svrhe)<br>
+        Autor: Nina Petrušić<br>
+        Verzija: 1.0<br>
+        Jezik: hrvatski
+    </p>
+    <br>
+    <p>Preuzimanje OpenAPI.json: <a href="\download\openapi.json" download><button class="button index"><i class="fa fa-download"></i> Download</button></a></p>
+    <br>
+    <pre><%=JSON.stringify(openapiData,null,"\t")%></pre>
+</body>
+
+</html>
