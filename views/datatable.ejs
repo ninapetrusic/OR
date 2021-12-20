@@ -14,16 +14,16 @@
     <h1><a href="./"><i class="fa fa-arrow-left"></i></a> Datatable</h1>
     <hr>
 
+    <% if (err !== undefined ) { %>
+      <p class="alert alert-danger"><%= err %></p>
+    <% } %>
+    
     <form action="/datatable" method="post">
       <legend>Pretraživanje:</legend>
 
       <div>
         <label for="text">Polje za pretragu</label><br>
         <input type="text" name="tekst" id="tekst" placeholder="Unesite vrijednost">
-
-        <% if (err !== undefined ) { %>
-          <p class="alert alert-danger"><%= err %></p>
-        <% } %>
 
       </div>
       <div>
@@ -52,6 +52,9 @@
         </div>
       <% } %>
 
+    <div>
+      <button id="dodaj" type="button" class="button" name ="dodaj" value="dodaj" onclick="window.location='/datatable/add';">Dodaj</button><br>
+    </div>
     
     </section>
     <br>
@@ -68,33 +71,48 @@
           <th>Studij</th>
           <th>Smjer</th>
           <th>Godina</th>
-          <th>ID profila</th>
-          <th>Naziv profila</th>
-          <th>ID nositelja</th>
-          <th>Ime</th>
-          <th>Prezime</th>
-          <th>Titula</th>
+          <th>Profili</th>
+          <th>Nositelji</th> 
         </tr>
-        <% for (let row of rows) { %>
-          <tr>
-            <td><%= row.idkolegij %></td>
-            <td><%= row.kolegij_naziv %></td>
-            <td><%= row.semestar %></td>
-            <td><%= row.ects %></td>
-            <td><%= row.predavanja %></td>
-            <td><%= row.laboratorijske %></td>
-            <td><% if(!row.auditorne) { %> 0 <% }else { %> <%=row.auditorne%> <% } %></td>
-            <td><%= row.studij %></td>
-            <td><% if(!row.smjer) { %> / <% }else { %> <%=row.smjer%> <% } %></td>
-            <td><%= row.godina %></td>
-            <td><% if(!row.idprofil) { %> / <% }else { %> <%=row.idprofil%> <% } %></td>
-            <td><% if(!row.profil_naziv) { %> / <% }else { %> <%=row.profil_naziv%> <% } %></td>
-            <td><%= row.idnositelj %></td>
-            <td><%= row.ime %></td>
-            <td><%= row.prezime %></td>
-            <td><%= row.titula %></td>
+        <% for (var i = 0; i < rows.length; i++) { %>
+          <% if(rows !== undefined) { %>
+          <tr onclick="window.location='/datatable/<%= rows[i].idkolegij %>';">
+            <td><%= rows[i].idkolegij %></td>
+            <td><%= rows[i].kolegij_naziv %></td>
+            <td><%= rows[i].semestar %></td>
+            <td><%= rows[i].ects %></td>
+            <td><%= rows[i].predavanja %></td>
+            <td><%= rows[i].laboratorijske %></td>
+            <td><% if(!rows[i].auditorne) { %> 0 <% }else { %> <%=rows[i].auditorne%> <% } %></td>
+            <td><%= rows[i].studij %></td>
+            <td><% if(!rows[i].smjer) { %> / <% }else { %> <%=rows[i].smjer%> <% } %></td>
+            <td><%= rows[i].godina %></td>
+            <td><% var j = i; %>
+              <% if(!rows[i].idprofil) { %> /
+              <% }else { %> 
+                <%=rows[i].idprofil%>: <%=rows[i].profil_naziv%>
+                <% let profili = []; profili.push(rows[i].idprofil);%>
+              <% while(true) { %>
+                    <% if(i+1 < rows.length && (rows[i+1].idkolegij == rows[j].idkolegij ) && (!profili.includes(rows[i+1].idprofil))) { %>
+                      <% i++; profili.push(rows[i].idprofil); %>
+                      <br><%=rows[i].idprofil%>: <%=rows[i].profil_naziv%>
+                    <% } else { 
+                      if (profili.includes(rows[i+1].idprofil) && i+1 < rows.length && rows[i+1].idkolegij == rows[j].idkolegij) { i++; } 
+                      else { i=j; break;} %>
+                      <% } %>
+                <% } %>
+              <% } %></td>
+            <td>
+              <% let prezimena = []; j = i; %>
+                <% while (true) { %>
+                  <% if (i >= rows.length || rows[i].idkolegij != rows[j].idkolegij) { i--;break; }%>
+                  <% if (!prezimena.includes(rows[i].prezime)) { %> <% prezimena.push(rows[i].prezime); %> 
+                    <%= rows[i].idnositelj %>: <%= rows[i].ime %> <%=rows[i].prezime%>, <%= rows[i].titula %> <% i++; %><br>
+                  <% } else { i++; } %>
+                  <% } %>
+            </td> 
           </tr>
-          
+          <% } %>
         <% } %>
       </table>
     </section>

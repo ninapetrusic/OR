@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <meta name="author" content="Nina Petrušić">
+    <meta name="keywords" content="kolegiji, FER">
+    <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='/style/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h1><a href="../datatable"><i class="fa fa-arrow-left"></i></a>Kolegij: <%= id %>
+    </h1>
+    <hr>
+    <p id="meta">
+        Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
+        dopuštenja (uključujući i komercijalne svrhe)<br>
+        Autor: Nina Petrušić<br>
+        Verzija: 1.0<br>
+        Jezik: hrvatski
+    </p>
+    <br>
+    <form action="/datatable/<%=rows[0].idkolegij%>/delete?_method=DELETE" method="POST">
+        <br><button class="button" name="delete" value="delete">Obriši kolegij</button>
+     </form><br>
+        <section>
+        <table>
+            <tr id="th">
+                <th>ID kolegija</th>
+                <th>Naziv kolegija</th>
+                <th>Semestar</th>
+                <th>ECTS</th>
+                <th>Predavanja</th>
+                <th>Laboratorijske</th>
+                <th>Auditorne</th>
+                <th>Studij</th>
+                <th>Smjer</th>
+                <th>Godina</th>
+                <th>Profili</th>
+                <th>Nositelji</th>
+            </tr>
+                <tr>
+                    <td>
+                        <%= rows[0].idkolegij %>
+                    </td>
+                    <td>
+                        <%= rows[0].kolegij_naziv %>
+                    </td>
+                    <td>
+                        <%= rows[0].semestar %>
+                    </td>
+                    <td>
+                        <%= rows[0].ects %>
+                    </td>
+                    <td>
+                        <%= rows[0].predavanja %>
+                    </td>
+                    <td>
+                        <%= rows[0].laboratorijske %>
+                    </td>
+                    <td>
+                        <% if(!rows[0].auditorne) { %> 0 <% }else { %>
+                                <%=rows[0].auditorne%>
+                                    <% } %>
+                    </td>
+                    <td>
+                        <%= rows[0].studij %>
+                    </td>
+                    <td>
+                        <% if(!rows[0].smjer) { %> / <% }else { %>
+                                <%=rows[0].smjer%>
+                                    <% } %>
+                    </td>
+                    <td>
+                        <%= rows[0].godina %>
+                    </td>
+                    <td>
+                        <% if (!rows[0].idprofil) { %> / <% } else { %>
+                            <%=rows[0].idprofil%>: <%=rows[0].profil_naziv%>
+                            <% for (var i = 1; i < rows.length; i++) { %>        
+                                <% if (rows[i].prezime == rows[0].prezime) { %>
+                                <br><%=rows[i].idprofil%> <%=rows[i].profil_naziv%>
+                                <% } %>
+                            <% } %>
+
+                        <% } %>
+                    </td>
+                    <td><% let prezimena = []; %>
+                        <% for (var i = 0; i < rows.length; i++) { %>
+                            <% if (!prezimena.includes(rows[i].prezime)) { %> <% prezimena.push(rows[i].prezime); %> 
+                            <%= rows[i].idnositelj %>: <%= rows[i].ime %> <%=rows[i].prezime%>, <%= rows[i].titula %><br>
+                            <% } %>
+                        <% } %>
+                    </td>
+                </tr>
+        </table>
+    </section>
+    </table>
+    </section>
+    <br>
+    <h2>Uređivanje kolegija</h2>
+    <form action="/datatable/<%=rows[0].idkolegij%>/edit?_method=PUT" method="POST">
+        <label for="naziv">Naziv kolegija:
+        <%=rows[0].kolegij_naziv%></label><br>
+        <label for="semestar">Semestar:</label>
+        <select name="semestar" id="semestar">
+            <option value="ljetni" selected>Ljetni</option>
+            <option value="zimski">Zimski</option>
+        </select><br>
+        <label for="ects">ECTS:</label>
+        <input type="number" value="<%=rows[0].ects%>" name="ects" id="ects"><br>
+        <label for="predavanja">Broj predavanja:</label>
+        <input type="number" value="<%=rows[0].predavanja%>" name="predavanja" id="predavanja"><br>
+        <label for="laboratorijske">Broj laboratorijskih vježbi:</label>
+        <input type="number" value="<%=rows[0].laboratorijske%>" name="laboratorijske" id="laboratorijske"><br>
+        <label for="auditorne">Broj auditornih vježbi:</label>
+        <input type="number" value="<%=rows[0].auditorne%>" name="auditorne" id="auditorne"><br>
+        <button class="button" type="submit" id="submitPut" >Submit</button>
+        <button type="button" class="button" name ="reset" value="odustani" onclick="window.location='/datatable';">Odustani</button>
+     </form>
+</body>
+
+</html>

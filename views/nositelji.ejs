@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <meta name="author" content="Nina Petrušić">
+    <meta name="keywords" content="kolegiji, FER">
+    <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='/style/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h1><a href="../add"><i class="fa fa-arrow-left"></i></a>Nositelji</h1>
+    <hr>
+    <p id="meta">
+        Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
+        dopuštenja (uključujući i komercijalne svrhe)<br>
+        Autor: Nina Petrušić<br>
+        Verzija: 1.0<br>
+        Jezik: hrvatski
+    </p>
+    <br>
+    <table>
+        <tr id="th">
+                <th>ID nositelja</th>
+                <th>Ime nositelja</th>
+                <th>Prezime nositelja</th>
+                <th>Titula</th>
+        </tr>
+        <% for(let row of rows) { %>
+            <tr>
+                <td>
+                    <%=row.idnositelj%>
+                </td>
+                <td>
+                    <%=row.ime%>
+                </td>
+                <td>
+                    <%=row.prezime%>
+                </td>
+                <td>
+                    <%=row.titula%>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+</body>
+
+</html>

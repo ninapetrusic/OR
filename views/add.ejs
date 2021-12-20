@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <meta name="author" content="Nina Petrušić">
+    <meta name="keywords" content="kolegiji, FER">
+    <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='/style/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h1><a href="../datatable"><i class="fa fa-arrow-left"></i></a>Dodaj kolegij
+    </h1>
+    <hr>
+    <p id="meta">
+        Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
+        dopuštenja (uključujući i komercijalne svrhe)<br>
+        Autor: Nina Petrušić<br>
+        Verzija: 1.0<br>
+        Jezik: hrvatski
+    </p>
+    <br>
+    <form method="post" action="/datatable/add">
+        <label for="idkolegij">ID kolegija</label>
+        <input type="text" name="idkolegij" id="idkolegij" placeholder="Unesite vrijednost" minlength="1">
+        <br>
+        <label for="text">Naziv kolegija</label>
+        <input type="text" name="kolegij_naziv" id="kolegij_naziv" placeholder="Unesite vrijednost" minlength="5">
+        <br>
+        <label for="semestar">Semestar</label>
+        <select name="semestar" id="semestar">
+            <option value="ljetni" selected>Ljetni</option>
+            <option value="zimski">Zimski</option>
+        </select>
+        <br>
+        <label for="text">ECTS</label>
+        <input type="text" name="ects" id="ects" placeholder="Unesite vrijednost" minlength="1">
+        <br>
+        <label for="text">Broj predavanja</label>
+        <input type="text" name="predavanja" id="predavanja" placeholder="Unesite vrijednost" minlength="1">
+        <br>
+        <label for="text">Broj laboratorijskih vježbi</label>
+        <input type="text" name="laboratorijske" id="laboratorijske" placeholder="Unesite vrijednost" minlength="1">
+        <br>
+        <label for="text">Broj auditornih vježbi</label>
+        <input type="text" name="auditorne" id="auditorne" placeholder="Unesite vrijednost" minlength="1">
+        <br>
+        <label for="studij">Studij</label>
+        <select name="studij" id="studij">
+            <option value="preddiplomski" id="preddiplomski" selected>Preddiplomski</option>
+            <option value="diplomski" id="diplomski">Diplomski</option>
+        </select>
+        <br>
+        <label for="smjer">Smjer</label>
+        <select name="smjer" id="smjer">
+            <option value="Računarstvo" selected>Računarstvo</option>
+            <option value="Informacijska i komunikacijska tehnologija">Informacijska i komunikacijska tehnologija</option>
+            <option value="Elektrotehnika i informacijska tehnologija">Elektrotehnika i Informacijska tehnologija</option>
+        </select>
+        <br>
+        <label for="godina">Godina studija</label>
+        <select name="godina" id="godina">
+            <option value="1" id="godina1p" selected>1. preddiplomskog studija</option>
+            <option value="2" id="godina2p">2. preddiplomskog studija</option>
+            <option value="3" id="godina3p">3. preddiplomskog studija</option>
+            <option value="1" id="godina1d">1. diplomskog studija</option>
+            <option value="2" id="godina2d">2. diplomskog studija </option>
+        </select>
+        <br>
+        <label for="profil">Profil</label>
+        <select name="idprofil" id="idprofil">
+            <option value="1" selected>Audiotehnologije i elektroakustika (1)</option>
+            <option value="2">Elektroenergetika (2)</option>
+            <option value="3">Elektroničko i računalno inženjerstvo (3)</option>
+            <option value="4">Elektronika (4)</option>
+            <option value="5">Elektrostrojarstvo i automatizacija (5)</option>
+            <option value="6">Automatika i robotika (6)</option>
+            <option value="7">Informacijsko i komunikacijsko inženjerstvo (7)</option>
+            <option value="8">Komunikacijske i svemirske tehnologije (8)</option>
+            <option value="9">Programsko inženjerstvo i informacijski sustavi (9)</option>
+            <option value="10">Računalno inženjerstvo (10)</option>
+            <option value="11">Računalno modeliranje u inženjerstvu (11)</option>
+            <option value="12">Računarska znanost (12)</option>
+            <option value="13">Znanost o mrežama (13)</option>
+            <option value="14">Znanost o podacima (14)</option>
+        </select>
+        <br>
+        <label for="nositelj">Nositelj:</label><br>
+        <label for="ime">Ime</label>
+        <input type="text" name="ime" id="ime" placeholder="Unesite vrijednost" minlength="2"><br>
+        <label for="prezime">Prezime</label>
+        <input type="text" name="prezime" id="prezime" placeholder="Unesite vrijednost" minlength="2"><br>
+        <label for="titula">Titula</label>
+        <select name="titula" id="titula">
+            <option value="Prof. dr. sc" selected>Prof. dr. sc.</option>
+            <option value="Izv. prof. dr. sc">Izv. prof. dr. sc.</option>
+            <option value="Doc. dr. sc.">Doc. dr. sc.</option>
+        </select>
+        <p><a href="/datatable/add/nositelji">Popis nositelja</a></p>
+        <button type="submit" class="button">Submit</button>
+    </form>
+</body>
+
+</html>
