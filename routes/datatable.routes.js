@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const pg = require('pg');
 const db = require('../db');
+const { requiresAuth } = require('express-openid-connect');
 
 let rows;
 let err;
@@ -17,6 +18,7 @@ router.get('/', function (req, res, next) {
                         ON kolegiji.idkolegij = kolegijprofil.idkolegij;`, [])).rows;
 
         res.render('datatable', {
+            isAuthenticated: req.oidc.isAuthenticated(),
             rows: rows,
             title: 'Datatable',
             err: undefined,
@@ -236,9 +238,7 @@ router.post('/', function (req, res, next) {
             await db.query(`INSERT INTO t VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`, [rowf.idkolegij, rowf.kolegij_naziv, rowf.semestar, rowf.ects, rowf.predavanja, rowf.laboratorijske, rowf.auditorne, rowf.studij, rowf.smjer, rowf.godina, rowf.idprofil, rowf.profil_naziv, rowf.idnositelj, rowf.ime, rowf.prezime, rowf.titula]);
         }
         //spremanje datoteke
-        //await db.query(`COPY t TO 'C:/Users/Public/Documents/Kolegiji_na_FER-u_filt.csv' DELIMITER ',' CSV HEADER;`, []);
         await db.query(`COPY t TO 'C:/Users/ninap/OR/public/download/Kolegiji_na_FER-u_filt.csv' DELIMITER ',' CSV HEADER;`, []);
-        //await db.query(`COPY (SELECT json_agg(row_to_json(t)) :: text FROM t) to 'C:/Users/Public/Documents/Kolegiji_na_FER-u_filt.json';`, []);
         await db.query(`COPY (SELECT json_agg(row_to_json(t)) :: text FROM t) to 'C:/Users/ninap/OR/public/download/Kolegiji_na_FER-u_filt.json';`, []);
         //obrisi tablicu
         await db.query(`DROP TABLE t`, []);

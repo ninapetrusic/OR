@@ -2,16 +2,33 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="author" content="Nina Petrušić">
     <meta name="keywords" content="kolegiji, FER">
     <meta name="description" content="Skup podataka o kolegijima na FER-u">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
     <link rel="stylesheet" href='/style/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
+    <header>
+      <nav>
+          <ul>
+              <li><a href="http://localhost:3000/">Home</a></li>
+              <li><a href="http://localhost:3000/datatable" class="active">Tablica</a></li>
+              <li><a href="http://localhost:3000/openapi">OpenAPI</a></li>
+              <% if(!isAuthenticated) { %>
+              <li style="float:right"><a class="active" href="http://localhost:3000/login">Login</a></li>
+              <% } else { %>
+                <li style="float: right"><a href="http://localhost:3000/logout">Odjava</a></li>
+                <li style="float: right"><a href="http://localhost:3000/user/download">Osvježi preslike</a></li>
+                  <li style="float: right"><a href="http://localhost:3000/user">Profil</a></li>
+                  <% } %>
+            </ul>
+          </nav>
+      </header>
+<br>
     <section class="section">
-    <h1><a href="http://localhost:3000/"><i class="fa fa-arrow-left"></i></a> Datatable</h1>
+    <h1 style="color:white">Datatable</h1>
     <hr>
 
     <% if (err !== undefined ) { %>

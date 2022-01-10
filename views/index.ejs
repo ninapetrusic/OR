@@ -1,38 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <meta name="author" content="Nina Petrušić">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta name="author" content="Nina Petrušić">
     <meta name="keywords" content="kolegiji, FER">
     <meta name="description" content="Skup podataka o kolegijima na FER-u">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
     <link rel="stylesheet" href='/style/main.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-    <h1>Kolegiji na FER-u</h1>
+</head>
+
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="http://localhost:3000/" class="active">Home</a></li>
+            <li><a href="http://localhost:3000/datatable">Tablica</a></li>
+            <li><a href="http://localhost:3000/openapi">OpenAPI</a></li>
+            <% if(!isAuthenticated) { %>
+            <li style="float:right"><a class="active" href="http://localhost:3000/login">Login</a></li>
+            <% } else { %>
+              <li style="float: right"><a href="http://localhost:3000/logout">Odjava</a></li>
+              <li style="float: right"><a href="http://localhost:3000/user/download">Osvježi preslike</a></li>
+                <li style="float: right"><a href="http://localhost:3000/user">Profil</a></li>
+                <% } %>
+          </ul>
+        </nav>
+    </header>
+  <br>
+    <h1 style="color: white">Kolegiji na FER-u</h1>
     <hr>
     <p id="meta">
-      Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja dopuštenja (uključujući i komercijalne svrhe)<br>
+      Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
+      dopuštenja
+      (uključujući i komercijalne svrhe)<br>
       Autor: Nina Petrušić<br>
       Verzija: 1.0<br>
       Jezik: hrvatski
     </p>
     <br>
-    <p><h5>Preuzimanje skupa podataka u JSON ili CSV formatu:</h5><br>
-      <div>
-        CSV: &ensp;<a href="\download\Kolegiji_na_FER-u.csv" download><button class="button index"><i class="fa fa-download"></i> Download</button></a>
-      </div><br>
-      <div>
-        JSON: <a href="\download\Kolegiji_na_FER-u.json" download><button class="button index"><i class="fa fa-download"></i> Download</button></a>
-      </div>
-    </p>    
-      <br>
-      <h4><a href="./datatable">Tablica s obrascem za filtriranje <i class="fa fa-arrow-right"></i></a></h4>
-    </p>
     <p>
-      <br>
-      <h5><a href="/openapi">OpenAPI specifikacija<i class="fa fa-arrow-right"></i></a></h5></p>
-    <p>
-  </body>
+    <h5 style="color: white">Preuzimanje skupa podataka u JSON ili CSV formatu:</h5><br>
+    <div style="color: white">
+      CSV: &ensp;<a href="\download\Kolegiji_na_FER-u.csv" download><button class="button index"><i
+            class="fa fa-download"></i> Download</button></a>
+    </div><br>
+    <div style="color: white">
+      JSON: <a href="\download\Kolegiji_na_FER-u.json" download><button class="button index"><i
+            class="fa fa-download"></i> Download</button></a>
+    </div>
+</body>
+
 </html>

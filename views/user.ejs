@@ -19,32 +19,28 @@
             <ul>
                 <li><a href="http://localhost:3000/">Home</a></li>
                 <li><a href="http://localhost:3000/datatable">Tablica</a></li>
-                <li><a href="http://localhost:3000/openapi" class="active">OpenAPI</a></li>
+                <li><a href="http://localhost:3000/openapi">OpenAPI</a></li>
                 <% if(!isAuthenticated) { %>
                 <li style="float:right"><a class="active" href="http://localhost:3000/login">Login</a></li>
                 <% } else { %>
                     <li style="float: right"><a href="http://localhost:3000/logout">Odjava</a></li>
                     <li style="float: right"><a href="http://localhost:3000/user/download">Osvježi preslike</a></li>
-                    <li style="float: right"><a href="http://localhost:3000/user">Profil</a></li>
+                    <li style="float: right"><a href="http://localhost:3000/user" class="active">Profil</a></li>
                     <% } %>
               </ul>
             </nav>
         </header>
     <br>
-    <h1>OpenAPI</h1>
+    <h1 style="color: white"> Profil</h1>
     <hr>
-    <p id="meta">
-        Licenca: Creative Commons Zero v1.0 Universal - slobodno umnažanje, prerađivanje i izvođenje bez traženja
-        dopuštenja (uključujući i komercijalne svrhe)<br>
-        Autor: Nina Petrušić<br>
-        Verzija: 1.0<br>
-        Jezik: hrvatski
+    <br>
+    <p style="color: white">Korisničko ime: <%= userName %>
     </p>
-    <br>
-    <p>Preuzimanje OpenAPI.json: <a href="\download\openapi.json" download><button class="button index"><i
-                    class="fa fa-download"></i> Download</button></a></p>
-    <br>
-    <pre><%=JSON.stringify(openapiData,null,"\t")%></pre>
+    <p style="color: white">E-mail: <%= userEmail %>
+    </p>
+    <p style="color: white">Updated at: <%= userUpdatedAt %>
+    </p>
+    <img src="<%= userPicture %>">
 </body>
 
 </html>
